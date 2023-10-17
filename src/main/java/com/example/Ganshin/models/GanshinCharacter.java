@@ -15,6 +15,8 @@ public class GanshinCharacter {
     private int id;
     @Column(name = "name")
     private String name;
+    @Column(name = "preview_mage_id")
+    private int previewImageId;
     @OneToMany(mappedBy = "character")
     private List<Properties> properties;
     @OneToMany(mappedBy = "character", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -53,5 +55,18 @@ public class GanshinCharacter {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+public int getPreviewImageId() {
+        return previewImageId;
+    }
+
+    public void setPreviewImageId(int previewImageId) {
+        this.previewImageId = previewImageId;
+    }
+
+    public void addImageToCharacter(Image image){
+        image.setCharacter(this);
+        images.add(image);
     }
 }
