@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Персонажи Ganshin</title>
+</head>
+<body>
+<div th:each="character : ${characters}">
+    <a th:href="@{/characters/{id}(id=${character.getId()})}">
+        <img th:src="@{/images/{id}(id = ${character.getImages().get(0).getId()})}" height="90px"/>
+        <figcaption th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
+            Персонаж ganshin</figcaption>
+    </a><br>
+</div>
+<form action="/characters/create">
+    <button>Добавить персонажа</button>
+</form>
+</body>
+</html>

@@ -5,11 +5,14 @@ import com.example.Ganshin.models.Image;
 import com.example.Ganshin.repositories.GanshinCharactersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class GanshinCharactersService {
 
     private final GanshinCharactersRepository ganshinCharactersRepository;
@@ -19,6 +22,11 @@ public class GanshinCharactersService {
         this.ganshinCharactersRepository = ganshinCharactersRepository;
     }
 
+    public List<GanshinCharacter> findAll() {
+        return ganshinCharactersRepository.findAll();
+    }
+
+    @Transactional
     public void save(GanshinCharacter character, MultipartFile file) throws IOException {
         Image image;
         if (file.getSize() != 0) {
@@ -30,6 +38,7 @@ public class GanshinCharactersService {
         ganshinCharactersRepository.save(character);
     }
 
+    //Доп методы, необходимые для методов сервиса
     private Image toImageEntity(MultipartFile file) throws IOException {
         Image image = new Image();
         image.setName(file.getName());

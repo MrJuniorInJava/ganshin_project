@@ -3,6 +3,7 @@ package com.example.Ganshin.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,7 +16,7 @@ public class GanshinCharacter {
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name = "preview_mage_id")
+    @Column(name = "preview_image_id")
     private int previewImageId;
     @OneToMany(mappedBy = "character")
     private List<Properties> properties;
@@ -67,6 +68,7 @@ public int getPreviewImageId() {
 
     public void addImageToCharacter(Image image){
         image.setCharacter(this);
+        images = new ArrayList<>();
         images.add(image);
     }
 }
