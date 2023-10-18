@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show character</title>
+</head>
+<body>
+<label th:text="${character.getName()}">Имя персонажа</label>
+<form th:action="@{/characters/edit/{id}(id=${character.getId()})}">
+    <button>Изменить персонажа</button>
+</form>
+
+<form th:method="DELETE" th:action="@{/characters/{id}(id=${character.getId()})}">
+    <input type="submit" value="Удалить персонажа">
+</form>
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.example.Ganshin.controllers;
 
 import com.example.Ganshin.models.GanshinCharacter;
 import com.example.Ganshin.services.GanshinCharactersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +24,15 @@ public class GanshinCharacterController {
 
     @GetMapping()
     public String showCharacters(Model model) {
-        model.addAttribute("characters",ganshinCharactersService.findAll());
+        model.addAttribute("characters", ganshinCharactersService.findAll());
         return "characters/show_characters";
+    }
+
+    @GetMapping("/{id}")
+    public String showCharacter(@PathVariable("id") int id, Model model,
+                                @ModelAttribute("character") GanshinCharacter character) {
+        model.addAttribute("character", ganshinCharactersService.findOne(id));
+        return "characters/show_one_character";
     }
 
     @GetMapping("/create")
@@ -35,6 +43,26 @@ public class GanshinCharacterController {
     @PostMapping("/create")
     public String createCharacter(@RequestParam("file1") MultipartFile file, GanshinCharacter character) throws IOException {
         ganshinCharactersService.save(character, file);
+        return "redirect:/characters";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editCharacterPage(Model model, @PathVariable("id") int id) {
+        model.addAttribute("character", ganshinCharactersService.findOne(id));
+        return "characters/edit";
+    }
+
+    @PostMapping ("/edit/{id}")
+    public String editCharacter(@RequestParam("file1") MultipartFile file,
+                                @PathVariable("id") int id,
+                                @ModelAttribute("character") GanshinCharacter character) throws IOException {
+        ganshinCharactersService.edit(character, file, id);
+        return "redirect:/characters";
+    }
+
+    @PostMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        ganshinCharactersService.delete(id);
         return "redirect:/characters";
     }
 

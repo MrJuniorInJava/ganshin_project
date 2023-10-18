@@ -20,7 +20,7 @@ public class GanshinCharacter {
     private int previewImageId;
     @OneToMany(mappedBy = "character")
     private List<Properties> properties;
-    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
 
     public GanshinCharacter() {
@@ -58,7 +58,7 @@ public class GanshinCharacter {
         this.images = images;
     }
 
-public int getPreviewImageId() {
+    public int getPreviewImageId() {
         return previewImageId;
     }
 
@@ -66,9 +66,11 @@ public int getPreviewImageId() {
         this.previewImageId = previewImageId;
     }
 
-    public void addImageToCharacter(Image image){
+    public void addImageToCharacter(Image image) {
+        if (this.images == null) {
+            this.images = new ArrayList<>();
+        }
+        this.images.add(image);
         image.setCharacter(this);
-        images = new ArrayList<>();
-        images.add(image);
     }
 }
