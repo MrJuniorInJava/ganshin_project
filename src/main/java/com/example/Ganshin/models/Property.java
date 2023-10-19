@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "properties")
-public class Properties {
+public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -17,7 +17,7 @@ public class Properties {
     @JoinColumn(name = "character_id",referencedColumnName = "id")
     private GanshinCharacter character;
 
-    public Properties() {
+    public Property() {
     }
 
     public int getId() {

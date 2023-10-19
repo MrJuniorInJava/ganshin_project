@@ -2,15 +2,16 @@ package com.example.Ganshin.services;
 
 import com.example.Ganshin.models.GanshinCharacter;
 import com.example.Ganshin.models.Image;
+import com.example.Ganshin.models.Property;
 import com.example.Ganshin.repositories.GanshinCharactersRepository;
 import com.example.Ganshin.repositories.ImagesRepository;
+import com.example.Ganshin.repositories.PropertiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,11 +20,15 @@ public class GanshinCharactersService {
 
     private final GanshinCharactersRepository ganshinCharactersRepository;
     private final ImagesRepository imagesRepository;
+    private final PropertiesRepository propertiesRepository;
 
     @Autowired
-    public GanshinCharactersService(GanshinCharactersRepository ganshinCharactersRepository, ImagesRepository imagesRepository) {
+    public GanshinCharactersService(GanshinCharactersRepository ganshinCharactersRepository,
+                                    ImagesRepository imagesRepository,
+                                    PropertiesRepository propertiesRepository) {
         this.ganshinCharactersRepository = ganshinCharactersRepository;
         this.imagesRepository = imagesRepository;
+        this.propertiesRepository = propertiesRepository;
     }
 
     public List<GanshinCharacter> findAll() {
@@ -60,9 +65,18 @@ public class GanshinCharactersService {
         ganshinCharactersRepository.save(newCharacter);
 
     }
+
     @Transactional
-    public void delete(int id){
+    public void delete(int id) {
         ganshinCharactersRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void addProperty(Property property, int idCharacter) {
+        GanshinCharacter character = ganshinCharactersRepository.findById(idCharacter).orElse(null);
+        property.setCharacter(character);
+        character.addPropertiesToCharacter(property);
+        propertiesRepository.save(property);
     }
 
     //Доп методы, необходимые для методов сервиса

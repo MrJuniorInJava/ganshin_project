@@ -5,12 +5,38 @@
     <title>Show character</title>
 </head>
 <body>
-<label th:text="${character.getName()}">Имя персонажа</label>
+<label  th:text="${character.getName()}">Имя персонажа</label>
+<br>
+<br>
 <form th:action="@{/characters/edit/{id}(id=${character.getId()})}">
     <button>Изменить персонажа</button>
 </form>
-
-<form th:method="DELETE" th:action="@{/characters/{id}(id=${character.getId()})}">
+<div th:if="${properties.isEmpty()}">
+    <p>Вы пока не указали характеристики для прокачки персонажа</p>
+    <hr/>
+</div>
+<div th:if="${!properties.isEmpty()}">
+    <hr/>
+    <b>Характеристики для прокачки:</b>
+    <br/>
+    <table th:each="property : ${properties}">
+        <tr>
+            <td>
+                <span th:text="${property.getName() + ', ' + property.getValue()}">
+                    property
+                </span>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+</div>
+<form th:method="POST" th:action="@{/characters/{id}(id=${character.getId()})}">
+    Название характеристики <input type="text" name="name"/><br><br>
+    Оптимальное значение <input type="text" name="value"/><br><br>
+    <input type="submit" value="Добавить характеристику"/>
+</form><br><br>
+<hr/>
+<form th:method="DELETE" th:action="@{/characters/delete/{id}(id=${character.getId()})}">
     <input type="submit" value="Удалить персонажа">
 </form>
 </body>

@@ -2,7 +2,6 @@ package com.example.Ganshin.models;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class GanshinCharacter {
     @Column(name = "preview_image_id")
     private int previewImageId;
     @OneToMany(mappedBy = "character")
-    private List<Properties> properties;
+    private List<Property> properties;
     @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
 
@@ -42,11 +41,11 @@ public class GanshinCharacter {
         this.name = name;
     }
 
-    public List<Properties> getProperties() {
+    public List<Property> getProperties() {
         return properties;
     }
 
-    public void setProperties(List<Properties> properties) {
+    public void setProperties(List<Property> properties) {
         this.properties = properties;
     }
 
@@ -72,5 +71,11 @@ public class GanshinCharacter {
         }
         this.images.add(image);
         image.setCharacter(this);
+    }
+    public void addPropertiesToCharacter(Property property){
+        if(this.properties==null){
+            this.properties=new ArrayList<>();
+        }
+        this.properties.add(property);
     }
 }
