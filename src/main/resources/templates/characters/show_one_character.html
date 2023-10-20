@@ -25,6 +25,9 @@
                 <span th:text="${property.getName() + ', ' + property.getValue()}">
                     property
                 </span>
+                <form th:method="DELETE" th:action="@{/property/delete/{idCharacter}/{idProperty}(idCharacter = ${character.getId()},idProperty=${property.getId()})}">
+                    <input type="submit" value="Удалить характеристику">
+                </form>
             </td>
         </tr>
     </table>

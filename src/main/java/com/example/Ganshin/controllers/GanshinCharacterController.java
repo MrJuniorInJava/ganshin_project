@@ -36,11 +36,13 @@ public class GanshinCharacterController {
         model.addAttribute("properties", ganshinCharactersService.findOne(id).getProperties());
         return "characters/show_one_character";
     }
+
     @PostMapping("/{id}")
     public String addProperties(@PathVariable("id") int id, Property property) throws IOException {
-        ganshinCharactersService.addProperty(property,id);
+        ganshinCharactersService.addProperty(property, id);
         return "redirect:/characters/{id}";
     }
+
 
     @GetMapping("/create")
     public String createCharacterPage() {
@@ -59,7 +61,7 @@ public class GanshinCharacterController {
         return "characters/edit";
     }
 
-    @PostMapping ("/edit/{id}")
+    @PostMapping("/edit/{id}")
     public String editCharacter(@RequestParam("file1") MultipartFile file,
                                 @PathVariable("id") int id,
                                 @ModelAttribute("character") GanshinCharacter character,

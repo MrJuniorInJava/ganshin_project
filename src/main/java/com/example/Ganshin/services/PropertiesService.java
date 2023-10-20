@@ -15,10 +15,18 @@ public class PropertiesService {
         this.propertiesRepository = propertiesRepository;
         this.ganshinCharactersService = ganshinCharactersService;
     }
+
     @Transactional
-    public void save(Property property, int idCharacter){
+    public void save(Property property, int idCharacter) {
         property.setCharacter(ganshinCharactersService.findOne(idCharacter));
         ganshinCharactersService.findOne(idCharacter).addPropertiesToCharacter(property);
         propertiesRepository.save(property);
+    }
+
+    @Transactional
+    public void delete(int idProperty) {
+        Property property = propertiesRepository.findById(idProperty).orElse(null);
+        property.getCharacter().getProperties().remove(property);
+        propertiesRepository.deleteById(idProperty);
     }
 }

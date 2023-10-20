@@ -78,6 +78,13 @@ public class GanshinCharactersService {
         character.addPropertiesToCharacter(property);
         propertiesRepository.save(property);
     }
+    @Transactional
+    public void deleteProperty(int idProperty, int idCharacter) {
+        GanshinCharacter character = ganshinCharactersRepository.findById(idCharacter).orElse(null);
+        Property property = propertiesRepository.findById(idProperty).orElse(null);
+        character.getProperties().remove(property);
+        propertiesRepository.deleteById(idProperty);
+    }
 
     //Доп методы, необходимые для методов сервиса
     private Image toImageEntity(MultipartFile file) throws IOException {
