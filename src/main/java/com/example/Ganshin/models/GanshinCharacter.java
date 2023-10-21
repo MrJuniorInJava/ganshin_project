@@ -1,6 +1,8 @@
 package com.example.Ganshin.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,9 @@ public class GanshinCharacter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "name")
+    @Column(unique = true, name = "name")
+    @NotEmpty(message = "Имя не должно быть пустым")
+    @Size(min = 2,max = 30, message = "Имя должно содержать от 2 до 30 символов")
     private String name;
     @Column(name = "preview_image_id")
     private int previewImageId;

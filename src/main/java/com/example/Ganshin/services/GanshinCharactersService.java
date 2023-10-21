@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -35,8 +36,8 @@ public class GanshinCharactersService {
         return ganshinCharactersRepository.findAll();
     }
 
-    public GanshinCharacter findOne(int id) {
-        return ganshinCharactersRepository.findById(id).orElse(null);
+    public Optional <GanshinCharacter> findOne(int id) {
+        return ganshinCharactersRepository.findById(id);
     }
 
     @Transactional
@@ -46,8 +47,8 @@ public class GanshinCharactersService {
             image = toImageEntity(file);
             image.setPreviewImage(true);
             character.addImageToCharacter(image);
+            character.setPreviewImageId(character.getImages().get(0).getId());
         }
-        character.setPreviewImageId(character.getImages().get(0).getId());
         ganshinCharactersRepository.save(character);
     }
 
@@ -78,6 +79,7 @@ public class GanshinCharactersService {
         character.addPropertiesToCharacter(property);
         propertiesRepository.save(property);
     }
+
     @Transactional
     public void deleteProperty(int idProperty, int idCharacter) {
         GanshinCharacter character = ganshinCharactersRepository.findById(idCharacter).orElse(null);

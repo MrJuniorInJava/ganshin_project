@@ -3,22 +3,26 @@ package com.example.Ganshin.controllers;
 import com.example.Ganshin.models.GanshinCharacter;
 import com.example.Ganshin.models.Property;
 import com.example.Ganshin.services.GanshinCharactersService;
+import com.example.Ganshin.utils.GanshinCharacterValidator;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 @RequestMapping("/characters")
 public class GanshinCharacterController {
+    private final GanshinCharacterValidator ganshinCharacterValidator;
     private final GanshinCharactersService ganshinCharactersService;
 
     @Autowired
-    public GanshinCharacterController(GanshinCharactersService ganshinCharactersService) {
+    public GanshinCharacterController(GanshinCharacterValidator ganshinCharacterValidator, GanshinCharactersService ganshinCharactersService) {
+        this.ganshinCharacterValidator = ganshinCharacterValidator;
         this.ganshinCharactersService = ganshinCharactersService;
 
     }
@@ -33,24 +37,32 @@ public class GanshinCharacterController {
     public String showCharacter(@PathVariable("id") int id, Model model,
                                 @ModelAttribute("character") GanshinCharacter character) {
         model.addAttribute("character", ganshinCharactersService.findOne(id));
-        model.addAttribute("properties", ganshinCharactersService.findOne(id).getProperties());
+        model.addAttribute("properties", ganshinCharactersService.findOne(id).get().getProperties());
         return "characters/show_one_character";
     }
 
     @PostMapping("/{id}")
-    public String addProperties(@PathVariable("id") int id, Property property) throws IOException {
+    public String addProperties(@PathVariable("id") int id, @ModelAttribute("properties") Property property) throws IOException {
         ganshinCharactersService.addProperty(property, id);
         return "redirect:/characters/{id}";
     }
 
 
     @GetMapping("/create")
-    public String createCharacterPage() {
+    public String createCharacterPage(Model model) {
+        model.addAttribute("character", new GanshinCharacter());
         return "characters/create";
     }
 
     @PostMapping("/create")
-    public String createCharacter(@RequestParam("file1") MultipartFile file, GanshinCharacter character) throws IOException {
+    public String createCharacter(@RequestParam("file1") MultipartFile file,
+                                  @ModelAttribute("character") @Valid GanshinCharacter character,
+                                  BindingResult bindingResult) throws IOException {
+        ganshinCharacterValidator.validate(character, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "/characters/create";
+        }
         ganshinCharactersService.save(character, file);
         return "redirect:/characters";
     }
@@ -64,10 +76,17 @@ public class GanshinCharacterController {
     @PostMapping("/edit/{id}")
     public String editCharacter(@RequestParam("file1") MultipartFile file,
                                 @PathVariable("id") int id,
-                                @ModelAttribute("character") GanshinCharacter character,
-                                @RequestParam("properties") List<Property> properties) throws IOException {
+                                @ModelAttribute("character") @Valid GanshinCharacter character,
+                                BindingResult bindingResult) throws IOException {
+
+        ganshinCharacterValidator.validate(character, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "/characters/edit";
+        }
         ganshinCharactersService.edit(character, file, id);
-        return "redirect:/characters";
+
+        return "redirect:/characters/{id}";
     }
 
     @PostMapping("/delete/{id}")

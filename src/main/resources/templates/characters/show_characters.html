@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Персонажи Ganshin</title>
 </head>
 <body>
+<b>Персонажи Ganshin</b>
 <div th:each="character : ${characters}">
     <a th:href="@{/characters/{id}(id=${character.getId()})}">
         <img th:src="@{/images/{id}(id = ${character.getImages().get(0).getId()})}" height="90px"/>

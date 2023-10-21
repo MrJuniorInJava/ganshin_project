@@ -5,11 +5,19 @@
     <title>Show character</title>
 </head>
 <body>
-<label  th:text="${character.getName()}">Имя персонажа</label>
+
+<a th:href="@{/images/{id}(id = ${character.get().getImages().get(0).getId()})}">
+    <img th:src="@{/images/{id}(id = ${character.get().getImages().get(0).getId()})}" height="200px"/>
+</a>
 <br>
 <br>
-<form th:action="@{/characters/edit/{id}(id=${character.getId()})}">
-    <button>Изменить персонажа</button>
+<b>
+    <span style="horiz-align: center" th:text="${character.get().getName()}">Имя персонажа</span>
+</b>
+<br>
+<br>
+<form th:action="@{/characters/edit/{id}(id=${character.get().getId()})}">
+    <button>Изменить имя или картинку персонажа</button>
 </form>
 <div th:if="${properties.isEmpty()}">
     <p>Вы пока не указали характеристики для прокачки персонажа</p>
@@ -19,13 +27,28 @@
     <hr/>
     <b>Характеристики для прокачки:</b>
     <br/>
-    <table th:each="property : ${properties}">
+    <table th:each="property : ${properties}" border="1" width="100">
         <tr>
             <td>
-                <span th:text="${property.getName() + ', ' + property.getValue()}">
-                    property
-                </span>
-                <form th:method="DELETE" th:action="@{/property/delete/{idCharacter}/{idProperty}(idCharacter = ${character.getId()},idProperty=${property.getId()})}">
+                Статы для прокачки
+            </td>
+            <td>
+                Оптимальное значение
+            </td>
+            <td>
+                Действие
+            </td>
+        </tr>
+        <tr>
+            <td th:text="${property.getName()}">
+                    property name
+                </td>
+            <td th:text="${property.getValue()}">
+                    property value
+                </td>
+            <td>
+                <form th:method="DELETE"
+                      th:action="@{/property/delete/{idCharacter}/{idProperty}(idCharacter = ${character.get(). getId()},idProperty=${property.getId()})}">
                     <input type="submit" value="Удалить характеристику">
                 </form>
             </td>
@@ -33,14 +56,20 @@
     </table>
     <hr/>
 </div>
-<form th:method="POST" th:action="@{/characters/{id}(id=${character.getId()})}">
+<form th:method="POST" th:action="@{/characters/{id}(id=${character.get().getId()})}">
     Название характеристики <input type="text" name="name"/><br><br>
     Оптимальное значение <input type="text" name="value"/><br><br>
     <input type="submit" value="Добавить характеристику"/>
-</form><br><br>
+</form>
+<br><br>
 <hr/>
-<form th:method="DELETE" th:action="@{/characters/delete/{id}(id=${character.getId()})}">
+<form th:method="DELETE" th:action="@{/characters/delete/{id}(id=${character.get().getId()})}">
     <input type="submit" value="Удалить персонажа">
+</form>
+<br>
+<hr/>
+<form action="/characters">
+    <button>Вернуться на страницу персонажей</button>
 </form>
 </body>
 </html>

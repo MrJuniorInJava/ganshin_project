@@ -16,12 +16,6 @@ public class PropertiesService {
         this.ganshinCharactersService = ganshinCharactersService;
     }
 
-    @Transactional
-    public void save(Property property, int idCharacter) {
-        property.setCharacter(ganshinCharactersService.findOne(idCharacter));
-        ganshinCharactersService.findOne(idCharacter).addPropertiesToCharacter(property);
-        propertiesRepository.save(property);
-    }
 
     @Transactional
     public void delete(int idProperty) {
