@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collections;
 
 @Controller
 @RequestMapping("/characters")
@@ -93,6 +94,19 @@ public class GanshinCharacterController {
     public String delete(@PathVariable("id") int id) {
         ganshinCharactersService.delete(id);
         return "redirect:/characters";
+    }
+
+    @GetMapping("/search")
+    public String searchPage(Model model) {
+        model.addAttribute("characters", Collections.emptyList());
+        return "characters/search";
+    }
+
+    @PostMapping("/search")
+    public String searchBookByName(@RequestParam(value = "name", required = false) String name,
+                                   Model model) {
+        model.addAttribute("characters", ganshinCharactersService.searchByName(name));
+        return "characters/search";
     }
 
 }

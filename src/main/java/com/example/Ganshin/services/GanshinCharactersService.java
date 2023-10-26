@@ -90,6 +90,9 @@ public class GanshinCharactersService {
         character.getProperties().remove(property);
         propertiesRepository.deleteById(idProperty);
     }
+    public List<GanshinCharacter> searchByName(String name){
+        return ganshinCharactersRepository.findByNameStartingWith(name);
+    }
 
     //Доп методы, необходимые для методов сервиса
     private Image toImageEntity(MultipartFile file) throws IOException {
