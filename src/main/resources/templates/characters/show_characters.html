@@ -7,11 +7,19 @@
 <body>
 <b>Персонажи Ganshin</b>
 <div th:each="character : ${characters}">
+    <div th:if="${character.getImages().isEmpty()}">
+        <a th:href="@{/characters/{id}(id=${character.getId()})}"
+           th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
+                Персонаж ganshin
+        </a><br>
+    </div>
+    <div th:unless="${character.getImages().isEmpty()}">
     <a th:href="@{/characters/{id}(id=${character.getId()})}">
         <img th:src="@{/images/{id}(id = ${character.getImages().get(0).getId()})}" height="90px"/>
         <figcaption th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
             Персонаж ganshin</figcaption>
     </a><br>
+        </div>
 </div>
 <form action="/characters/create">
     <button>Добавить персонажа</button>

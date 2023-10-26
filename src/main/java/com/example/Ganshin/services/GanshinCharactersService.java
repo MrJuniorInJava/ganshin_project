@@ -55,11 +55,14 @@ public class GanshinCharactersService {
     @Transactional
     public void edit(GanshinCharacter newCharacter, MultipartFile file, int id) throws IOException {
         Image image;
+        GanshinCharacter ganshinCharacter = ganshinCharactersRepository.findById(id).get();
         if (file.getSize() != 0) {
             image = toImageEntity(file);
             image.setPreviewImage(true);
-            imagesRepository.deleteById(ganshinCharactersRepository.findById(id).get()
-                    .getImages().get(0).getId());
+            if (!ganshinCharacter.getImages().isEmpty()){
+                imagesRepository.deleteById(ganshinCharacter
+                        .getImages().get(0).getId());
+            }
             newCharacter.addImageToCharacter(image);
         }
         newCharacter.setId(id);

@@ -5,7 +5,7 @@
     <title>Edit</title>
 </head>
 <body>
-<form th:action="@{/characters/edit/{id}(id=${character.getId()})}"
+<form th:action="@{/characters/edit/{id}(id=${character.get().getId()})}"
       th:method="PATCH" enctype="multipart/form-data" th:object="${character}">
     <label for="name">Изменить имя персонажа</label>
     <input type="text" th:field="*{name}" id="name"/>
