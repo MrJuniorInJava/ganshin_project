@@ -1,7 +1,7 @@
-package com.example.Ganshin.controllers;
+package com.example.Ganshin.App.controllers;
 
-import com.example.Ganshin.models.Image;
-import com.example.Ganshin.services.ImagesService;
+import com.example.Ganshin.App.models.Image;
+import com.example.Ganshin.App.services.ImagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;

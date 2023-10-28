@@ -1,7 +1,7 @@
-package com.example.Ganshin.utils;
+package com.example.Ganshin.App.utils;
 
-import com.example.Ganshin.models.GanshinCharacter;
-import com.example.Ganshin.repositories.GanshinCharactersRepository;
+import com.example.Ganshin.App.models.GanshinCharacter;
+import com.example.Ganshin.App.repositories.GanshinCharactersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

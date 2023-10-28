@@ -31,7 +31,7 @@
     <hr/>
     <b>Характеристики для прокачки:</b>
     <br/>
-    <table th:each="property : ${properties}" border="1" width="100">
+    <table  border="1" width="100">
         <tr>
             <td>
                 Статы для прокачки
@@ -43,7 +43,7 @@
                 Действие
             </td>
         </tr>
-        <tr>
+        <tr th:each="property : ${properties}"  >
             <td th:text="${property.getName()}">
                     property name
                 </td>

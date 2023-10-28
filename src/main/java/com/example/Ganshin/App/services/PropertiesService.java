@@ -1,7 +1,7 @@
-package com.example.Ganshin.services;
+package com.example.Ganshin.App.services;
 
-import com.example.Ganshin.models.Property;
-import com.example.Ganshin.repositories.PropertiesRepository;
+import com.example.Ganshin.App.models.Property;
+import com.example.Ganshin.App.repositories.PropertiesRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

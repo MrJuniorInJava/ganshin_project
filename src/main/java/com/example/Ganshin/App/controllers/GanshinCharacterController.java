@@ -1,10 +1,9 @@
-package com.example.Ganshin.controllers;
+package com.example.Ganshin.App.controllers;
 
-import com.example.Ganshin.models.GanshinCharacter;
-import com.example.Ganshin.models.Property;
-import com.example.Ganshin.services.GanshinCharactersService;
-import com.example.Ganshin.utils.GanshinCharacterValidator;
-import jakarta.validation.Valid;
+import com.example.Ganshin.App.models.GanshinCharacter;
+import com.example.Ganshin.App.models.Property;
+import com.example.Ganshin.App.services.GanshinCharactersService;
+import com.example.Ganshin.App.utils.GanshinCharacterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Collections;
 

@@ -1,24 +1,15 @@
 package com.example.Ganshin;
 
-import com.example.Ganshin.controllers.GanshinCharacterController;
-import com.example.Ganshin.models.GanshinCharacter;
-import com.example.Ganshin.services.GanshinCharactersService;
-import org.junit.Assert;
+import com.example.Ganshin.App.controllers.GanshinCharacterController;
+import com.example.Ganshin.App.services.GanshinCharactersService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 

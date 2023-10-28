@@ -1,7 +1,7 @@
-package com.example.Ganshin.repositories;
+package com.example.Ganshin.App.repositories;
 
 
-import com.example.Ganshin.models.Property;
+import com.example.Ganshin.App.models.Property;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

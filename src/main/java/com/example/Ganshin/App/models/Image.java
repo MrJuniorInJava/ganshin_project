@@ -1,6 +1,6 @@
-package com.example.Ganshin.models;
+package com.example.Ganshin.App.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "image")
