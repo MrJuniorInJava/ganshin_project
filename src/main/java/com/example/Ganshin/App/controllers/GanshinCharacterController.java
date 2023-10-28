@@ -5,6 +5,7 @@ import com.example.Ganshin.App.models.Property;
 import com.example.Ganshin.App.services.GanshinCharactersService;
 import com.example.Ganshin.App.utils.GanshinCharacterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,6 +44,7 @@ public class GanshinCharacterController {
     }
 
     @PostMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addProperties(@PathVariable("id") int id, @ModelAttribute("properties") Property property) throws IOException {
         ganshinCharactersService.addProperty(property, id);
         return "redirect:/characters/{id}";
@@ -50,12 +52,14 @@ public class GanshinCharacterController {
 
 
     @GetMapping("/create")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String createCharacterPage(Model model) {
         model.addAttribute("character", new GanshinCharacter());
         return "characters/create";
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String createCharacter(@RequestParam("file1") MultipartFile file,
                                   @ModelAttribute("character") @Valid GanshinCharacter character,
                                   BindingResult bindingResult) throws IOException {
@@ -69,12 +73,14 @@ public class GanshinCharacterController {
     }
 
     @GetMapping("/edit/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String editCharacterPage(Model model, @PathVariable("id") int id) {
         model.addAttribute("character", ganshinCharactersService.findOne(id));
         return "characters/edit";
     }
 
     @PostMapping("/edit/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String editCharacter(@RequestParam("file1") MultipartFile file,
                                 @PathVariable("id") int id,
                                 @ModelAttribute("character") @Valid GanshinCharacter character,
@@ -91,6 +97,7 @@ public class GanshinCharacterController {
     }
 
     @PostMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String delete(@PathVariable("id") int id) {
         ganshinCharactersService.delete(id);
         return "redirect:/characters";
