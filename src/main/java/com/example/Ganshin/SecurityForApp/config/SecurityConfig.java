@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .and()
                 .logout().logoutUrl("/logout")//Настраиваем выход аутентифицированного пользователя(Удаление сессии,
                 // кукис и разлогирование пользователя)
-                .logoutSuccessUrl("/auth/logout");
+                .logoutSuccessUrl("/auth/login");
 
         return http.build();
     }

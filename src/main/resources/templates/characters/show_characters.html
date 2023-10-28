@@ -2,31 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Персонажи Ganshin</title>
+    <title>Персонажи Genshin</title>
+
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKWlp/+lpaf/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1tbVT/ocH//6HB/21tbVMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+ocH//6HB//+hwf/+ocH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOmMrf+0pKv//6HB///Y5P//2OT//6HB/7meqP/pjK3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADckaz//6HB//7F1///2OT//9jk//7K2///ocH/3JGr/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1tbVj7ocD//6HB//+GsP//eqb//9jk///Y5P//eqb//4aw//+hwf/7ocD/bW1tSwAAAAAAAAAAAAAAAKWlp///ocH//6HB/4tGXv+LRl7//3qm//96pv//eqb//3qm/4tGXv+LRl7//6HB//+hwf+lpaf/AAAAAAAAAAClpaf//6HB//+hwf+LRl7/i0Ze/4tGXv//eqb//3qm/4tGXv+LRl7/i0Ze//+hwf//ocH/paWn/wAAAAAAAAAAAAAAAG1tbWX/ocH//6HB/4tGXv+LRl7/i0Ze/4tGXv+LRl7/i0Ze//+hwf//ocH/bW1tTgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOGiuP//ocH/i0Ze/4tGXv+LRl7/i0Ze//+hwf/gorj/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpjK3/7pq3//+hwf+LRl7/i0Ze//+hwf/wmbj/6Yyt/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/ocH//6HB//+hwf//ocH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbW1tYv+hwf//ocH/bW1tUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAClpaf/paWn/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP5/AAD+fwAA/D8AAPAPAADwDwAA4AcAAIABAACAAQAA4AcAAPAPAADwDwAA/D8AAP5/AAD+fwAA//8AAA=="
+          rel="icon" type="image/x-icon">
+    <style>
+     body {
+          background-image: url('https://propowerpoint.ru/fony/genshin/16.jpg');
+          background-size: cover; /* Масштабирование изображения для заполнения всей области */
+          background-repeat: no-repeat; /* Запрет повторения фона */
+          backdrop-filter: blur(0px); /* Размытия фона */
+        }
+            header {
+          background-color: rgba(72, 102, 130, 0.4); /* Цвет фона шапки (полупрозрачный)*/
+          padding: 10px 0; /* Отступы внутри шапки */
+        }
+
+        .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu li {
+      display: inline;
+      margin-right: 20px;
+      position: relative; /* Для добавления тени */
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #B3B456; /* Основной цвет текста */
+      font-weight: bold;
+      transition: color 0.3s, background-color 0.3s; /* Плавные переходы при наведении */
+    }
+
+    .menu a:hover {
+      color: #ff5722; /* Цвет текста при наведении */
+      background-color: #f4f4f4; /* Фон при наведении */
+      border-radius: 5px; /* Закругленные углы */
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Тень */
+    }
+            .city {
+                text-align:center;
+                background-color: rgba(211, 215, 204, 0.23);
+                color: #fff;
+                margin: 20px;
+                padding: 20px;
+            }
+a {
+  text-decoration: none;
+  color: #0077b6; /* Установите желаемый цвет текста ссылки */
+}
+
+    </style>
 </head>
+<header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/characters"> Персонажи Genshin</a></li>
+            <li><a href="/characters/search">Страница поиска персонажей</a></li>
+            <li><a href="/characters/create">Добавить персонажа</a></li>
+        </ul>
+    </nav>
+</header>
 <body>
-<b>Персонажи Ganshin</b>
-<div th:each="character : ${characters}">
-    <div th:if="${character.getImages().isEmpty()}">
-        <a th:href="@{/characters/{id}(id=${character.getId()})}"
-           th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
-                Персонаж ganshin
-        </a><br>
-    </div>
-    <div th:unless="${character.getImages().isEmpty()}">
-    <a th:href="@{/characters/{id}(id=${character.getId()})}">
-        <img th:src="@{/images/{id}(id = ${character.getImages().get(0).getId()})}" height="90px"/>
-        <figcaption th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
-            Персонаж ganshin</figcaption>
-    </a><br>
+<div class="city">
+    <h1 style="font-size:30px;">Персонажи Genshin Impact</h1>
+    <div th:each="character : ${characters}">
+        <div th:if="${character.getImages().isEmpty()}">
+            <a th:href="@{/characters/{id}(id=${character.getId()})}"
+               th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
+                Персонаж genshin
+            </a><br>
         </div>
+        <div th:unless="${character.getImages().isEmpty()}">
+            <a th:href="@{/characters/{id}(id=${character.getId()})}">
+                <img th:src="@{/images/{id}(id = ${character.getImages().get(0).getId()})}" height="100px"/>
+                <figcaption th:text="${character.getName()}" style="color:#CF7044;font-size:30px;">
+                    Персонаж genshin
+                </figcaption>
+            </a><br>
+        </div>
+    </div>
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="Выйти">
+    </form>
+
 </div>
-<form action="/characters/create">
-    <button>Добавить персонажа</button>
-</form>
-<hr/>
-<form action="/characters/search">
-    <button>Страница поиск персонажей</button>
-</form>
 </body>
 </html>
