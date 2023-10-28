@@ -17,6 +17,7 @@ public class PersonDTO {
     private int yearOfBirth;
     @NotNull
     @NotEmpty
+    @Size(min=3, max = 20, message = "Пароль должен содержать от 3 до 20 символов")
     private String password;
 
     public String getUsername() {

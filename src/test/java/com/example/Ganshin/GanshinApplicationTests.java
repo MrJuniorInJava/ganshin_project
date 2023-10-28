@@ -1,6 +1,6 @@
 package com.example.Ganshin;
 
-import com.example.Ganshin.App.controllers.GanshinCharacterController;
+import com.example.Ganshin.App.controllers.GanshinCharacterControllerForAdmin;
 import com.example.Ganshin.App.services.GanshinCharactersService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,11 +22,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class GanshinApplicationTests {
 
     private final MockMvc mockMvc;
-    private final GanshinCharacterController controller;
+    private final GanshinCharacterControllerForAdmin controller;
     private final GanshinCharactersService ganshinCharactersService;
 
     @Autowired
-    GanshinApplicationTests(MockMvc mockMvc, GanshinCharacterController controller, GanshinCharactersService ganshinCharactersService) {
+    GanshinApplicationTests(MockMvc mockMvc, GanshinCharacterControllerForAdmin controller, GanshinCharactersService ganshinCharactersService) {
         this.mockMvc = mockMvc;
         this.controller = controller;
         this.ganshinCharactersService = ganshinCharactersService;

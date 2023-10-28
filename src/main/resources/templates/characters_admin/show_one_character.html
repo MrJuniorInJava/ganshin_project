@@ -62,7 +62,7 @@
         }
     .highlight-button {
       background-color: rgba(237, 157, 175, 0.38); /* Цвет фона кнопки */
-      color: #333; /* Цвет текста на кнопке */
+      color: ##333; /* Цвет текста на кнопке */
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
@@ -85,17 +85,18 @@
 <header>
     <nav>
         <ul class="menu">
-            <li><a href="/characters"> Персонажи Genshin</a></li>
-            <li><a href="/characters/search">Страница поиска персонажей</a></li>
+            <li><a href="/characters_admin"> Персонажи Genshin</a></li>
+            <li><a href="/characters_admin/search">Страница поиска персонажей</a></li>
+            <li><a href="/characters_admin/create">Добавить персонажа</a></li>
         </ul>
     </nav>
 </header>
 <body>
 <div class="city">
-    <div th:if="${character.get().getImages().isEmpty()}">
+    <div th:if="${character.get().getImages().size()==0}">
    <p>У персонажа пока не установлена картинка</p>
 </div>
-<div th:unless="${character.get().getImages().isEmpty()}">
+<div th:unless="${character.get().getImages().size()==0}">
 <a th:href="@{/images/{id}(id = ${character.get().getImages().get(0).getId()})}">
     <img th:src="@{/images/{id}(id = ${character.get().getImages().get(0).getId()})}" height="200px"/>
 </a>
@@ -106,7 +107,9 @@
     </h1>
 
 
-
+<form th:action="@{/characters_admin/edit/{id}(id=${character.get().getId()})}">
+    <button>Изменить имя или картинку персонажа</button>
+</form>
 <div th:if="${properties.isEmpty()}">
     <p>Вы пока не указали характеристики для прокачки данного персонажа</p>
     <hr/>
@@ -125,6 +128,9 @@
             <td>
                 Оптимальное значение
             </td>
+            <td>
+                Действие
+            </td>
         </tr>
         <tr th:each="property : ${properties}">
             <td th:text="${property.getName()}">
@@ -133,11 +139,30 @@
             <td th:text="${property.getValue()}">
                     property value
                 </td>
+            <td>
+                <form th:method="DELETE"
+                      th:action="@{/property/delete/{idCharacter}/{idProperty}(idCharacter = ${character.get(). getId()},idProperty=${property.getId()})}">
+                    <input type="submit" value="Удалить характеристику"/>
+                </form>
+            </td>
         </tr>
     </table>
     </div>
     <hr/>
 </div>
+<form th:method="POST" th:action="@{/characters_admin/{id}(id=${character.get().getId()})}">
+    Название характеристики <input type="text" name="name"/><br/><br/>
+    Оптимальное значение <input type="text" name="value"/><br/><br/>
+    <input type="submit" value="Добавить характеристику"/>
+</form>
+<br/>
+<br/>
+<hr/>
+<form th:method="DELETE" th:action="@{/characters_admin/delete/{id}(id=${character.get().getId()})}">
+    <input type="submit" value="Удалить персонажа"/>
+</form>
+<br/>
+<hr/>
 <form action="/characters">
     <button class="highlight-button">Вернуться на страницу персонажей</button>
 

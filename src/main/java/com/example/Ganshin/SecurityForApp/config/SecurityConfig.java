@@ -12,8 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-
+@CrossOrigin
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -29,7 +30,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()//Пускать всех на эти страницы
+                .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
+                .antMatchers("/characters_admin/**").hasRole("ADMIN")//Пускать c ролью ADMIN на эти страницы
                 .anyRequest().hasAnyRole("USER", "ADMIN")//На все другие страницы пускать только пользователей с данными ролями
                 .and()
                 .formLogin().loginPage("/auth/login")// Настраиваем форму для аутентификации

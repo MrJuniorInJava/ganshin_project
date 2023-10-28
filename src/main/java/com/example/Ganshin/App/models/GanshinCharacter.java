@@ -77,6 +77,7 @@ public class GanshinCharacter {
         image.setCharacter(this);
     }
     public void addPropertiesToCharacter(Property property){
+        property.setCharacter(this);
         if(this.properties==null){
             this.properties=new ArrayList<>();
         }

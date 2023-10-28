@@ -78,7 +78,6 @@ public class GanshinCharactersService {
     @Transactional
     public void addProperty(Property property, int idCharacter) {
         GanshinCharacter character = ganshinCharactersRepository.findById(idCharacter).orElse(null);
-        property.setCharacter(character);
         character.addPropertiesToCharacter(property);
         propertiesRepository.save(property);
     }

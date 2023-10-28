@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Поиск</title>
+    <title>Добавление нового персонажа</title>
     <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKWlp/+lpaf/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1tbVT/ocH//6HB/21tbVMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+ocH//6HB//+hwf/+ocH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOmMrf+0pKv//6HB///Y5P//2OT//6HB/7meqP/pjK3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADckaz//6HB//7F1///2OT//9jk//7K2///ocH/3JGr/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1tbVj7ocD//6HB//+GsP//eqb//9jk///Y5P//eqb//4aw//+hwf/7ocD/bW1tSwAAAAAAAAAAAAAAAKWlp///ocH//6HB/4tGXv+LRl7//3qm//96pv//eqb//3qm/4tGXv+LRl7//6HB//+hwf+lpaf/AAAAAAAAAAClpaf//6HB//+hwf+LRl7/i0Ze/4tGXv//eqb//3qm/4tGXv+LRl7/i0Ze//+hwf//ocH/paWn/wAAAAAAAAAAAAAAAG1tbWX/ocH//6HB/4tGXv+LRl7/i0Ze/4tGXv+LRl7/i0Ze//+hwf//ocH/bW1tTgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOGiuP//ocH/i0Ze/4tGXv+LRl7/i0Ze//+hwf/gorj/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpjK3/7pq3//+hwf+LRl7/i0Ze//+hwf/wmbj/6Yyt/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/ocH//6HB//+hwf//ocH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbW1tYv+hwf//ocH/bW1tUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAClpaf/paWn/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP5/AAD+fwAA/D8AAPAPAADwDwAA4AcAAIABAACAAQAA4AcAAPAPAADwDwAA/D8AAP5/AAD+fwAA//8AAA==" rel="icon" type="image/x-icon">
-    <style>
-      body {
+        <style>
+body {
+font-family: 'Times New Roman', serif;
           background-image: url('https://propowerpoint.ru/fony/genshin/16.jpg');
           background-size: cover; /* Масштабирование изображения для заполнения всей области */
           background-repeat: no-repeat; /* Запрет повторения фона */
@@ -30,7 +31,7 @@
 
     .menu a {
       text-decoration: none;
-      color: #B3B456; /* Основной цвет текста */
+      color:  #B3B456; /* Основной цвет текста */
       font-weight: bold;
       transition: color 0.3s, background-color 0.3s; /* Плавные переходы при наведении */
     }
@@ -43,51 +44,39 @@
     }
             .city {
                 text-align:center;
-                background-color: rgba(211, 215, 204, 0.23);
+               background-color: rgba(211, 215, 204, 0.23);
                 color: #fff;
                 margin: 20px;
                 padding: 20px;
-            }
-    </style>
-</head>
 
+
+</style>
+</head>
 <header>
     <nav>
         <ul class="menu">
             <li><a href="/characters"> Персонажи Genshin</a></li>
             <li><a href="/characters/search">Страница поиска персонажей</a></li>
+            <li><a href="/characters/create">Добавить персонажа</a></li>
         </ul>
     </nav>
 </header>
-
 <body>
 <div class="city">
 <br/>
-<form th:method="POST" th:action="@{/templates/characters_admin/search}">
-    <label for="name">Введите поисковой запрос: </label>
-    <input type="text" id="name" name="name"/>
-    <input type="submit" value="Искать"/>
-</form>
-<div th:if="${characters.isEmpty()}">
-    <p>Персонажей с таким именем не найдено</p>
-</div>
-<div th:unless="${characters.isEmpty()}">
-    <div th:each="character : ${characters}">
-        <br/>
-        <br/>
-        <a th:href="@{/templates/characters_admin/{id}(id=${character.getId()})}">
-            <img th:src="@{/images/{id}(id = ${character.getImages().get(0).getId()})}" height="90px"/>
-            <figcaption th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
-                Персонаж ganshin
-            </figcaption>
-        </a>
-    </div>
-</div>
-<hr/>
-<form action="/characters">
-    <button>Вернуться на страницу персонажей</button>
-</form>
-</div>
-</body>
+<form action="/characters_admin/create" method="post" enctype="multipart/form-data" th:object="${character}">
+<!--    Имя героя: <input type="text" name="name"/><br><br>-->
+<!--    Добавить изображение <input type="file" name="file1"/><br><br>-->
+<!--    <input type="submit" value="Добавить персонажа"/>-->
+    <label for="name">Введите имя персонажа:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+    Добавить изображение <input type="file" name="file1"/><br><br>
 
+    <input type="submit" value="Добавить персонажа!"/>
+</form>
+    </div>
+</body>
 </html>

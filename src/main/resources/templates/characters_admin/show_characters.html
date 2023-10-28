@@ -60,8 +60,9 @@ a {
 <header>
     <nav>
         <ul class="menu">
-            <li><a href="/characters"> Персонажи Genshin</a></li>
-            <li><a href="/characters/search">Страница поиска персонажей</a></li>
+            <li><a href="/characters_admin"> Персонажи Genshin</a></li>
+            <li><a href="/characters_admin/search">Страница поиска персонажей</a></li>
+            <li><a href="/characters_admin/create">Добавить персонажа</a></li>
         </ul>
     </nav>
 </header>
@@ -70,13 +71,13 @@ a {
     <h1 style="font-size:30px;">Персонажи Genshin Impact</h1>
     <div th:each="character : ${characters}">
         <div th:if="${character.getImages().isEmpty()}">
-            <a th:href="@{/characters/{id}(id=${character.getId()})}"
+            <a th:href="@{/characters_admin/{id}(id=${character.getId()})}"
                th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
                 Персонаж genshin
             </a><br>
         </div>
         <div th:unless="${character.getImages().isEmpty()}">
-            <a th:href="@{/characters/{id}(id=${character.getId()})}">
+            <a th:href="@{/characters_admin/{id}(id=${character.getId()})}">
                 <img th:src="@{/images/{id}(id = ${character.getImages().get(0).getId()})}" height="100px"/>
                 <figcaption th:text="${character.getName()}" style="color:#CF7044;font-size:30px;">
                     Персонаж genshin
