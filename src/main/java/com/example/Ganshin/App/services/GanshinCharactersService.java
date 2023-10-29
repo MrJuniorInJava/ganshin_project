@@ -5,6 +5,7 @@ import com.example.Ganshin.App.models.Image;
 import com.example.Ganshin.App.models.Property;
 import com.example.Ganshin.App.repositories.GanshinCharactersRepository;
 import com.example.Ganshin.App.repositories.ImagesRepository;
+import com.example.Ganshin.App.repositories.ItemsRepository;
 import com.example.Ganshin.App.repositories.PropertiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,16 @@ public class GanshinCharactersService {
     private final GanshinCharactersRepository ganshinCharactersRepository;
     private final ImagesRepository imagesRepository;
     private final PropertiesRepository propertiesRepository;
+    private final ItemsRepository itemsRepository;
 
     @Autowired
     public GanshinCharactersService(GanshinCharactersRepository ganshinCharactersRepository,
                                     ImagesRepository imagesRepository,
-                                    PropertiesRepository propertiesRepository) {
+                                    PropertiesRepository propertiesRepository, ItemsRepository itemsRepository) {
         this.ganshinCharactersRepository = ganshinCharactersRepository;
         this.imagesRepository = imagesRepository;
         this.propertiesRepository = propertiesRepository;
+        this.itemsRepository = itemsRepository;
     }
 
     public List<GanshinCharacter> findAll() {
@@ -78,7 +81,7 @@ public class GanshinCharactersService {
     @Transactional
     public void addProperty(Property property, int idCharacter) {
         GanshinCharacter character = ganshinCharactersRepository.findById(idCharacter).orElse(null);
-        character.addPropertiesToCharacter(property);
+        character.addPropertyToCharacter(property);
         propertiesRepository.save(property);
     }
 

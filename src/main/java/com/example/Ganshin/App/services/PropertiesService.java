@@ -9,11 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class PropertiesService {
     private final PropertiesRepository propertiesRepository;
-    private final GanshinCharactersService ganshinCharactersService;
 
-    public PropertiesService(PropertiesRepository propertiesRepository, GanshinCharactersService ganshinCharactersService) {
+    public PropertiesService(PropertiesRepository propertiesRepository) {
         this.propertiesRepository = propertiesRepository;
-        this.ganshinCharactersService = ganshinCharactersService;
     }
 
 

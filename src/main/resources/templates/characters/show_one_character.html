@@ -138,6 +138,57 @@
     </div>
     <hr/>
 </div>
+    <div>
+
+        <h3>Основные характеристики передметов для данного персонажа:</h3>
+        <br/>
+        <div class="center-table">
+            <table border="1" width="100">
+                <tr>
+                    <td>
+                        Статы для цветка
+                    </td>
+                    <td>
+                        Статы для пера
+                    </td>
+                    <td>
+                        Статы для часов
+                    </td>
+                    <td>
+                        Статы для кубка
+                    </td>
+                    <td>
+                        Статы для шапки
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a th:if="${items.size()>=1}" th:text="${items.get(0).getValue()}">item value</a>
+                    </td>
+                    <td>
+                        <a th:if="${items.size()>=2}" th:text="${items.get(1).getValue()}">item value</a>
+                    </td>
+                    <td>
+                        <a th:if="${items.size()>=3}" th:text="${items.get(2).getValue()}">item value</a>
+                    </td>
+                    <td>
+                        <a th:if="${items.size()>=4}" th:text="${items.get(3).getValue()}">item value</a>
+                    </td>
+                    <td>
+                        <a th:if="${items.size()>=5}" th:text="${items.get(4).getValue()}">item value</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br/>
+    <div th:if="${stats.isEmpty()}">
+        <a>Дополнительных характеристик для предметов этого персонажа ещё не добавлено</a>
+    </div>
+    <div th:unless="${stats.isEmpty()}">
+        <a>Дополнительные характеристики для предметов:</a>
+        <a th:text="${stats}">характеристики</a>
+    </div>
 <form action="/characters">
     <button class="highlight-button">Вернуться на страницу персонажей</button>
 

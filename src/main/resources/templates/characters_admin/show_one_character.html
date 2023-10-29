@@ -3,83 +3,91 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Show character</title>
-    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKWlp/+lpaf/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1tbVT/ocH//6HB/21tbVMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+ocH//6HB//+hwf/+ocH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOmMrf+0pKv//6HB///Y5P//2OT//6HB/7meqP/pjK3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADckaz//6HB//7F1///2OT//9jk//7K2///ocH/3JGr/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1tbVj7ocD//6HB//+GsP//eqb//9jk///Y5P//eqb//4aw//+hwf/7ocD/bW1tSwAAAAAAAAAAAAAAAKWlp///ocH//6HB/4tGXv+LRl7//3qm//96pv//eqb//3qm/4tGXv+LRl7//6HB//+hwf+lpaf/AAAAAAAAAAClpaf//6HB//+hwf+LRl7/i0Ze/4tGXv//eqb//3qm/4tGXv+LRl7/i0Ze//+hwf//ocH/paWn/wAAAAAAAAAAAAAAAG1tbWX/ocH//6HB/4tGXv+LRl7/i0Ze/4tGXv+LRl7/i0Ze//+hwf//ocH/bW1tTgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOGiuP//ocH/i0Ze/4tGXv+LRl7/i0Ze//+hwf/gorj/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpjK3/7pq3//+hwf+LRl7/i0Ze//+hwf/wmbj/6Yyt/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/ocH//6HB//+hwf//ocH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbW1tYv+hwf//ocH/bW1tUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAClpaf/paWn/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP5/AAD+fwAA/D8AAPAPAADwDwAA4AcAAIABAACAAQAA4AcAAPAPAADwDwAA/D8AAP5/AAD+fwAA//8AAA==" rel="icon" type="image/x-icon">
-        <style>
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKWlp/+lpaf/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1tbVT/ocH//6HB/21tbVMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+ocH//6HB//+hwf/+ocH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOmMrf+0pKv//6HB///Y5P//2OT//6HB/7meqP/pjK3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADckaz//6HB//7F1///2OT//9jk//7K2///ocH/3JGr/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1tbVj7ocD//6HB//+GsP//eqb//9jk///Y5P//eqb//4aw//+hwf/7ocD/bW1tSwAAAAAAAAAAAAAAAKWlp///ocH//6HB/4tGXv+LRl7//3qm//96pv//eqb//3qm/4tGXv+LRl7//6HB//+hwf+lpaf/AAAAAAAAAAClpaf//6HB//+hwf+LRl7/i0Ze/4tGXv//eqb//3qm/4tGXv+LRl7/i0Ze//+hwf//ocH/paWn/wAAAAAAAAAAAAAAAG1tbWX/ocH//6HB/4tGXv+LRl7/i0Ze/4tGXv+LRl7/i0Ze//+hwf//ocH/bW1tTgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOGiuP//ocH/i0Ze/4tGXv+LRl7/i0Ze//+hwf/gorj/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpjK3/7pq3//+hwf+LRl7/i0Ze//+hwf/wmbj/6Yyt/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/ocH//6HB//+hwf//ocH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbW1tYv+hwf//ocH/bW1tUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAClpaf/paWn/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP5/AAD+fwAA/D8AAPAPAADwDwAA4AcAAIABAACAAQAA4AcAAPAPAADwDwAA/D8AAP5/AAD+fwAA//8AAA=="
+          rel="icon" type="image/x-icon">
+    <style>
         body {
-      background-image: url('https://propowerpoint.ru/fony/genshin/16.jpg');
-      background-size: cover; /* Масштабирование изображения для заполнения всей области */
-      background-repeat: no-repeat; /* Запрет повторения фона */
-      backdrop-filter: blur(0px); /* Размытия фона */
-    }
-    header {
-       background-color: rgba(72, 102, 130, 0.4); /* Цвет фона шапки (полупрозрачный)*/
-      padding: 10px 0; /* Отступы внутри шапки */
-    }
+            background-image: url('https://propowerpoint.ru/fony/genshin/16.jpg');
+            background-size: cover; /* Масштабирование изображения для заполнения всей области */
+            background-repeat: no-repeat; /* Запрет повторения фона */
+            backdrop-filter: blur(0px); /* Размытия фона */
+        }
 
-    .menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+        header {
+            background-color: rgba(72, 102, 130, 0.4); /* Цвет фона шапки (полупрозрачный)*/
+            padding: 10px 0; /* Отступы внутри шапки */
+        }
 
-.menu li {
-  display: inline;
-  margin-right: 20px;
-  position: relative; /* Для добавления тени */
-}
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.menu a {
-  text-decoration: none;
-  color: #B3B456; /* Основной цвет текста */
-  font-weight: bold;
-  transition: color 0.3s, background-color 0.3s; /* Плавные переходы при наведении */
-}
+        .menu li {
+            display: inline;
+            margin-right: 20px;
+            position: relative; /* Для добавления тени */
+        }
 
-.menu a:hover {
-  color: #ff5722; /* Цвет текста при наведении */
-  background-color: #f4f4f4; /* Фон при наведении */
-  border-radius: 5px; /* Закругленные углы */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Тень */
-}
+        .menu a {
+            text-decoration: none;
+            color: #B3B456; /* Основной цвет текста */
+            font-weight: bold;
+            transition: color 0.3s, background-color 0.3s; /* Плавные переходы при наведении */
+        }
+
+        .menu a:hover {
+            color: #ff5722; /* Цвет текста при наведении */
+            background-color: #f4f4f4; /* Фон при наведении */
+            border-radius: 5px; /* Закругленные углы */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Тень */
+        }
+
         .center-table {
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .city {
-           text-align:center;
+            text-align: center;
             color: black;
             margin: 20px;
             padding: 20px;
         }
+
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
         }
+
         th, td {
             padding: 10px;
             text-align: center;
         }
-    .highlight-button {
-      background-color: rgba(237, 157, 175, 0.38); /* Цвет фона кнопки */
-      color: ##333; /* Цвет текста на кнопке */
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s; /* Плавное изменение цвета фона при наведении */
-    }
 
-    .highlight-button:hover {
-      background-color: #ed9daf9f; /* Цвет фона кнопки при наведении */
-    }
-     .city {
-                text-align:center;
-                background-color: rgba(211, 215, 204, 0.23);
-                color: #fff;
-                margin: 20px;
-                padding: 20px;
-            }
+        .highlight-button {
+            background-color: rgba(237, 157, 175, 0.38); /* Цвет фона кнопки */
+            color: #333; /* Цвет текста на кнопке */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Плавное изменение цвета фона при наведении */
+        }
+
+        .highlight-button:hover {
+            background-color: #ed9daf9f; /* Цвет фона кнопки при наведении */
+        }
+
+        .city {
+            text-align: center;
+            background-color: rgba(211, 215, 204, 0.23);
+            color: #fff;
+            margin: 20px;
+            padding: 20px;
+        }
     </style>
 </head>
 <header>
@@ -94,79 +102,188 @@
 <body>
 <div class="city">
     <div th:if="${character.get().getImages().size()==0}">
-   <p>У персонажа пока не установлена картинка</p>
-</div>
-<div th:unless="${character.get().getImages().size()==0}">
-<a th:href="@{/images/{id}(id = ${character.get().getImages().get(0).getId()})}">
-    <img th:src="@{/images/{id}(id = ${character.get().getImages().get(0).getId()})}" height="200px"/>
-</a>
-</div>
+        <p>У персонажа пока не установлена картинка</p>
+    </div>
+    <div th:unless="${character.get().getImages().size()==0}">
+        <a th:href="@{/images/{id}(id = ${character.get().getImages().get(0).getId()})}">
+            <img th:src="@{/images/{id}(id = ${character.get().getImages().get(0).getId()})}" height="200px"/>
+        </a>
+    </div>
 
     <h1 style="font-size:30px;">
-    <span th:text="${character.get().getName()}">Имя персонажа</span>
+        <span th:text="${character.get().getName()}">Имя персонажа</span>
     </h1>
 
 
-<form th:action="@{/characters_admin/edit/{id}(id=${character.get().getId()})}">
-    <button>Изменить имя или картинку персонажа</button>
-</form>
-<div th:if="${properties.isEmpty()}">
-    <p>Вы пока не указали характеристики для прокачки данного персонажа</p>
-    <hr/>
-</div>
-<div th:if="${!properties.isEmpty()}">
-
-    <hr/>
-    <h3>Характеристики для прокачки:</h3>
-    <br/>
-    <div class="center-table">
-    <table border="1" width="100">
-        <tr>
-            <td>
-                Статы для прокачки
-            </td>
-            <td>
-                Оптимальное значение
-            </td>
-            <td>
-                Действие
-            </td>
-        </tr>
-        <tr th:each="property : ${properties}">
-            <td th:text="${property.getName()}">
-                    property name
-                </td>
-            <td th:text="${property.getValue()}">
-                    property value
-                </td>
-            <td>
-                <form th:method="DELETE"
-                      th:action="@{/property/delete/{idCharacter}/{idProperty}(idCharacter = ${character.get(). getId()},idProperty=${property.getId()})}">
-                    <input type="submit" value="Удалить характеристику"/>
-                </form>
-            </td>
-        </tr>
-    </table>
+    <form th:action="@{/characters_admin/edit/{id}(id=${character.get().getId()})}">
+        <button>Изменить имя или картинку персонажа</button>
+    </form>
+    <div th:if="${properties.isEmpty()}">
+        <p>Вы пока не указали характеристики для прокачки данного персонажа</p>
+        <hr/>
     </div>
-    <hr/>
-</div>
-<form th:method="POST" th:action="@{/characters_admin/{id}(id=${character.get().getId()})}">
-    Название характеристики <input type="text" name="name"/><br/><br/>
-    Оптимальное значение <input type="text" name="value"/><br/><br/>
-    <input type="submit" value="Добавить характеристику"/>
-</form>
-<br/>
-<br/>
-<hr/>
-<form th:method="DELETE" th:action="@{/characters_admin/delete/{id}(id=${character.get().getId()})}">
-    <input type="submit" value="Удалить персонажа"/>
-</form>
-<br/>
-<hr/>
-<form action="/characters">
-    <button class="highlight-button">Вернуться на страницу персонажей</button>
+    <div th:if="${!properties.isEmpty()}">
 
-</form>
-</div>
+        <hr/>
+        <h3>Характеристики для прокачки:</h3>
+        <br/>
+        <div class="center-table">
+            <table border="1" width="100">
+                <tr>
+                    <td>
+                        Статы для прокачки
+                    </td>
+                    <td>
+                        Оптимальное значение
+                    </td>
+                    <td>
+                        Действие
+                    </td>
+                </tr>
+                <tr th:each="property : ${properties}">
+                    <td th:text="${property.getName()}">
+                        property name
+                    </td>
+                    <td th:text="${property.getValue()}">
+                        property value
+                    </td>
+                    <td>
+                        <form th:method="DELETE"
+                              th:action="@{/property/delete/{idCharacter}/{idProperty}(idCharacter = ${character.get(). getId()},idProperty=${property.getId()})}">
+                            <input type="submit" value="Удалить характеристику"/>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <form th:method="POST" th:action="@{/characters_admin/{id}(id=${character.get().getId()})}">
+            Название характеристики <input type="text" name="name"/><br/><br/>
+            Оптимальное значение <input type="text" name="value"/><br/><br/>
+            <input type="submit" value="Добавить характеристику"/>
+        </form>
+        <br/>
+        <br/>
+        <hr/>
+        <div>
+
+            <h3>Основные характеристики передметов для данного персонажа</h3>
+            <br/>
+            <div class="center-table">
+                <table border="1" width="100">
+                    <tr>
+                        <td>
+                            Статы для цветка
+                        </td>
+                        <td>
+                            Статы для пера
+                        </td>
+                        <td>
+                            Статы для часов
+                        </td>
+                        <td>
+                            Статы для кубка
+                        </td>
+                        <td>
+                            Статы для шапки
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:if="${items.size()>=1}" th:text="${items.get(0).getValue()}">item value</a>
+                            <form th:if="${items.size()>=1}" th:method="DELETE"
+                                  th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(0).getId()})}">
+                                <input type="submit" value="Удалить значение"/>
+                            </form>
+                            <form th:if="${items.size()==0}" th:method="POST"
+                                  th:action="@{/items/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                                Введите необходимый стат <input type="text" name="value"/><br/><br/>
+                                <input type="submit" value="Добавить стат"/>
+                            </form>
+                        </td>
+                        <td>
+                            <a th:if="${items.size()>=2}" th:text="${items.get(1).getValue()}">item value</a>
+                            <form th:if="${items.size()>=2}" th:method="DELETE"
+                                  th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(1).getId()})}">
+                                <input type="submit" value="Удалить значение"/>
+                            </form>
+                            <form th:if="${items.size()==1}" th:method="POST"
+                                  th:action="@{/items/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                                Введите необходимый стат <input type="text" name="value"/><br/><br/>
+                                <input type="submit" value="Добавить стат"/>
+                            </form>
+                        </td>
+                        <td>
+                            <a th:if="${items.size()>=3}" th:text="${items.get(2).getValue()}">item value</a>
+                            <form th:if="${items.size()>=3}" th:method="DELETE"
+                                  th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(2).getId()})}">
+                                <input type="submit" value="Удалить значение"/>
+                            </form>
+                            <form th:if="${items.size()==2}" th:method="POST"
+                                  th:action="@{/items/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                                Введите необходимый стат <input type="text" name="value"/><br/><br/>
+                                <input type="submit" value="Добавить стат"/>
+                            </form>
+                        </td>
+                        <td>
+                            <a th:if="${items.size()>=4}" th:text="${items.get(3).getValue()}">item value</a>
+                            <form th:if="${items.size()>=4}" th:method="DELETE"
+                                  th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(3).getId()})}">
+                                <input type="submit" value="Удалить значение"/>
+                            </form>
+                            <form th:if="${items.size()==3}" th:method="POST"
+                                  th:action="@{/items/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                                Введите необходимый стат <input type="text" name="value"/><br/><br/>
+                                <input type="submit" value="Добавить стат"/>
+                            </form>
+                        </td>
+                        <td>
+                            <a th:if="${items.size()>=5}" th:text="${items.get(4).getValue()}">item value</a>
+                            <form th:if="${items.size()>=5}" th:method="DELETE"
+                                  th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(4).getId()})}">
+                                <input type="submit" value="Удалить значение"/>
+                            </form>
+                            <form th:if="${items.size()==4}" th:method="POST"
+                                  th:action="@{/items/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                                Введите необходимый стат <input type="text" name="value"/><br/><br/>
+                                <input type="submit" value="Добавить стат"/>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div th:if="${stats.isEmpty()}">
+            <a>Дополнительных характеристик для предметов этого персонажа ещё не добавлено</a>
+            <form th:method="POST"
+                  th:action="@{/stats/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                Введите необходимую характеристику  <input type="text" name="name"/><br/><br/>
+                <input type="submit" value="Добавить характеристику"/>
+            </form>
+        </div>
+        <div th:unless="${stats.isEmpty()}">
+            <a>Дополнительные характеристики для предметов:</a>
+            <a th:text="${stats}">характеристики</a>
+            <form th:method="POST"
+                  th:action="@{/stats/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                Введите необходимую характеристику: <input type="text" name="name"/><br/><br/>
+                <input type="submit" value="Добавить характеристику"/>
+            </form>
+            <form th:method="DELETE"
+                  th:action="@{/stats/delete/{idCharacter}/{idStat}(idCharacter = ${character.get(). getId()},
+                  idStat=${character.get().getStats().get(character.get().getStats().size()-1).getId()})}">
+                <input type="submit" value="Удалить значение"/>
+            </form>
+        </div>
+        <hr/>
+        <form th:method="DELETE" th:action="@{/characters_admin/delete/{id}(id=${character.get().getId()})}">
+            <input type="submit" value="Удалить персонажа"/>
+        </form>
+        <br/>
+        <hr/>
+        <form action="/characters">
+            <button class="highlight-button">Вернуться на страницу персонажей</button>
+
+        </form>
+    </div>
 </body>
 </html>

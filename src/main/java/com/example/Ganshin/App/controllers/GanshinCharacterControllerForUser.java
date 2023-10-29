@@ -32,8 +32,12 @@ public class GanshinCharacterControllerForUser {
     @GetMapping("/{id}")
     public String showCharacter(@PathVariable("id") int id, Model model,
                                 @ModelAttribute("character") GanshinCharacter character) {
+        String statsList= ganshinCharactersService.findOne(id).get().getStats().toString();
         model.addAttribute("character", ganshinCharactersService.findOne(id));
         model.addAttribute("properties", ganshinCharactersService.findOne(id).get().getProperties());
+        model.addAttribute("items", ganshinCharactersService.findOne(id).get().getItems());
+        model.addAttribute("stats", ganshinCharactersService.findOne(id).get().
+                getStats().toString().substring(1,statsList.length()-1));
         return "characters/show_one_character";
     }
 

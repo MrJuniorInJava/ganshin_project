@@ -17,7 +17,7 @@ public class GanshinCharacter {
     private int id;
     @Column(unique = true, name = "name")
     @NotEmpty(message = "Имя не должно быть пустым")
-    @Size(min = 2,max = 30, message = "Имя должно содержать от 2 до 30 символов")
+    @Size(min = 2, max = 30, message = "Имя должно содержать от 2 до 30 символов")
     private String name;
     @Column(name = "preview_image_id")
     private int previewImageId;
@@ -25,6 +25,10 @@ public class GanshinCharacter {
     private List<Property> properties;
     @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Item> items;
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
+    private List<AdditionalStat> stats;
 
     public GanshinCharacter() {
     }
@@ -69,18 +73,51 @@ public class GanshinCharacter {
         this.previewImageId = previewImageId;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<AdditionalStat> getStats() {
+        return stats;
+    }
+
+    public void setStats(List<AdditionalStat> stats) {
+        this.stats = stats;
+    }
+
+    //Вспомогательные методы
     public void addImageToCharacter(Image image) {
+        image.setCharacter(this);
         if (this.images == null) {
             this.images = new ArrayList<>();
         }
         this.images.add(image);
-        image.setCharacter(this);
     }
-    public void addPropertiesToCharacter(Property property){
+
+    public void addPropertyToCharacter(Property property) {
         property.setCharacter(this);
-        if(this.properties==null){
-            this.properties=new ArrayList<>();
+        if (this.properties == null) {
+            this.properties = new ArrayList<>();
         }
         this.properties.add(property);
+    }
+
+    public void addItemToCharacter(Item item) {
+        item.setCharacter(this);
+        if (this.items == null) {
+            this.items = new ArrayList<>();
+        }
+        this.items.add(item);
+    }
+    public void addStatToCharacter(AdditionalStat stat) {
+        stat.setCharacter(this);
+        if (this.stats == null) {
+            this.stats = new ArrayList<>();
+        }
+        this.stats.add(stat);
     }
 }
