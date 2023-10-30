@@ -5,7 +5,6 @@ import com.example.Ganshin.App.models.Property;
 import com.example.Ganshin.App.services.GanshinCharactersService;
 import com.example.Ganshin.App.utils.GanshinCharacterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,14 +16,13 @@ import java.io.IOException;
 import java.util.Collections;
 
 @Controller
-@RequestMapping("/characters_admin")
-@PreAuthorize("hasRole('ROLE_ADMIN')")
-public class GanshinCharacterControllerForAdmin {
+@RequestMapping("/characters")
+public class GanshinCharacterController {
     private final GanshinCharacterValidator ganshinCharacterValidator;
     private final GanshinCharactersService ganshinCharactersService;
 
     @Autowired
-    public GanshinCharacterControllerForAdmin(GanshinCharacterValidator ganshinCharacterValidator, GanshinCharactersService ganshinCharactersService) {
+    public GanshinCharacterController(GanshinCharacterValidator ganshinCharacterValidator, GanshinCharactersService ganshinCharactersService) {
         this.ganshinCharacterValidator = ganshinCharacterValidator;
         this.ganshinCharactersService = ganshinCharactersService;
 
@@ -32,7 +30,8 @@ public class GanshinCharacterControllerForAdmin {
     @GetMapping()
     public String showCharacters(Model model) {
         model.addAttribute("characters", ganshinCharactersService.findAll());
-        return "characters_admin/show_characters";
+        model.addAttribute("role",ganshinCharactersService.getRoleUser());
+        return "characters/show_characters";
     }
     @GetMapping("/{id}")
     public String showCharacter(@PathVariable("id") int id, Model model,
@@ -41,21 +40,23 @@ public class GanshinCharacterControllerForAdmin {
         model.addAttribute("character", ganshinCharactersService.findOne(id));
         model.addAttribute("properties", ganshinCharactersService.findOne(id).get().getProperties());
         model.addAttribute("items", ganshinCharactersService.findOne(id).get().getItems());
-        model.addAttribute("stats", ganshinCharactersService.findOne(id).get().getStats().toString().substring(1,statsList.length()-1));
-        return "characters_admin/show_one_character";
+        model.addAttribute("stats", ganshinCharactersService.findOne(id).get().getStats().toString()
+                .substring(1,statsList.length()-1));
+        model.addAttribute("role",ganshinCharactersService.getRoleUser());
+        return "characters/show_one_character";
     }
 
     @PostMapping("/{id}")
     public String addProperties(@PathVariable("id") int id, @ModelAttribute("properties") Property property) throws IOException {
         ganshinCharactersService.addProperty(property, id);
-        return "redirect:/characters_admin/{id}";
+        return "redirect:/characters/{id}";
     }
 
 
     @GetMapping("/create")
     public String createCharacterPage(Model model) {
         model.addAttribute("character", new GanshinCharacter());
-        return "characters_admin/create";
+        return "characters/create";
     }
 
     @PostMapping("/create")
@@ -65,16 +66,16 @@ public class GanshinCharacterControllerForAdmin {
         ganshinCharacterValidator.validate(character, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "/characters_admin/create";
+            return "/characters/create";
         }
         ganshinCharactersService.save(character, file);
-        return "redirect:/characters_admin";
+        return "redirect:/characters";
     }
 
     @GetMapping("/edit/{id}")
     public String editCharacterPage(Model model, @PathVariable("id") int id) {
         model.addAttribute("character", ganshinCharactersService.findOne(id));
-        return "characters_admin/edit";
+        return "characters/edit";
     }
 
     @PostMapping("/edit/{id}")
@@ -86,28 +87,28 @@ public class GanshinCharacterControllerForAdmin {
         ganshinCharacterValidator.validate(character, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "/characters_admin/edit";
+            return "/characters/edit";
         }
         ganshinCharactersService.edit(character, file, id);
 
-        return "redirect:/characters_admin/{id}";
+        return "redirect:/characters/{id}";
     }
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         ganshinCharactersService.delete(id);
-        return "redirect:/characters_admin";
+        return "redirect:/characters";
     }
     @GetMapping("/search")
     public String searchPage(Model model) {
         model.addAttribute("characters", Collections.emptyList());
-        return "characters_admin/search";
+        return "characters/search";
     }
     @PostMapping("/search")
     public String searchBookByName(@RequestParam(value = "name", required = false) String name,
                                    Model model) {
         model.addAttribute("characters", ganshinCharactersService.searchByName(name));
-        return "characters_admin/search";
+        return "characters/search";
     }
 
 }

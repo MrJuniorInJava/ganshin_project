@@ -8,6 +8,9 @@ import com.example.Ganshin.App.repositories.ImagesRepository;
 import com.example.Ganshin.App.repositories.ItemsRepository;
 import com.example.Ganshin.App.repositories.PropertiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,6 +47,7 @@ public class GanshinCharactersService {
     }
 
     @Transactional
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void save(GanshinCharacter character, MultipartFile file) throws IOException {
         Image image;
         if (file.getSize() != 0) {
@@ -56,6 +60,7 @@ public class GanshinCharactersService {
     }
 
     @Transactional
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void edit(GanshinCharacter newCharacter, MultipartFile file, int id) throws IOException {
         Image image;
         GanshinCharacter ganshinCharacter = ganshinCharactersRepository.findById(id).get();
@@ -74,11 +79,13 @@ public class GanshinCharactersService {
     }
 
     @Transactional
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(int id) {
         ganshinCharactersRepository.deleteById(id);
     }
 
     @Transactional
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void addProperty(Property property, int idCharacter) {
         GanshinCharacter character = ganshinCharactersRepository.findById(idCharacter).orElse(null);
         character.addPropertyToCharacter(property);
@@ -86,17 +93,16 @@ public class GanshinCharactersService {
     }
 
     @Transactional
-    public void deleteProperty(int idProperty, int idCharacter) {
-        GanshinCharacter character = ganshinCharactersRepository.findById(idCharacter).orElse(null);
-        Property property = propertiesRepository.findById(idProperty).orElse(null);
-        character.getProperties().remove(property);
-        propertiesRepository.deleteById(idProperty);
-    }
     public List<GanshinCharacter> searchByName(String name){
         return ganshinCharactersRepository.findByNameStartingWith(name);
     }
 
     //Доп методы, необходимые для методов сервиса
+    public String getRoleUser(){
+        List<SimpleGrantedAuthority> grantedAuthorities = (List<SimpleGrantedAuthority>) SecurityContextHolder.
+                getContext().getAuthentication().getAuthorities();// Получаем роль пользователя, который находится на странице
+        return grantedAuthorities.get(0).toString();
+    }
     private Image toImageEntity(MultipartFile file) throws IOException {
         Image image = new Image();
         image.setName(file.getName());

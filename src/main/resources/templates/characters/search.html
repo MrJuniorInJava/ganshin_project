@@ -56,6 +56,7 @@
         <ul class="menu">
             <li><a href="/characters"> Персонажи Genshin</a></li>
             <li><a href="/characters/search">Страница поиска персонажей</a></li>
+            <li><a href="/characters/create">Добавить персонажа</a></li>
         </ul>
     </nav>
 </header>
@@ -63,7 +64,7 @@
 <body>
 <div class="city">
 <br/>
-<form th:method="POST" th:action="@{/templates/characters_admin/search}">
+<form th:method="POST" th:action="@{/templates/characters/search}">
     <label for="name">Введите поисковой запрос: </label>
     <input type="text" id="name" name="name"/>
     <input type="submit" value="Искать"/>
@@ -75,7 +76,7 @@
     <div th:each="character : ${characters}">
         <br/>
         <br/>
-        <a th:href="@{/templates/characters_admin/{id}(id=${character.getId()})}">
+        <a th:href="@{/characters/{id}(id=${character.getId()})}">
             <img th:src="@{/images/{id}(id = ${character.getImages().get(0).getId()})}" height="90px"/>
             <figcaption th:text="${character.getName()}" style="color:fuchsia;font-size:10px;">
                 Персонаж ganshin

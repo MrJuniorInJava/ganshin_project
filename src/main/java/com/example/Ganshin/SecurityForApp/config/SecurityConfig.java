@@ -31,7 +31,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
-                .antMatchers("/characters_admin/**").hasRole("ADMIN")//Пускать c ролью ADMIN на эти страницы
+                .antMatchers("/characters/create","characters/edit/**").hasRole("ADMIN")
                 .anyRequest().hasAnyRole("USER", "ADMIN")//На все другие страницы пускать только пользователей с данными ролями
                 .and()
                 .formLogin().loginPage("/auth/login")// Настраиваем форму для аутентификации

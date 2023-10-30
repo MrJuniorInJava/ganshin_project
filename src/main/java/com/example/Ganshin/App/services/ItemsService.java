@@ -5,11 +5,13 @@ import com.example.Ganshin.App.models.Item;
 import com.example.Ganshin.App.repositories.GanshinCharactersRepository;
 import com.example.Ganshin.App.repositories.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class ItemsService {
     private final ItemsRepository itemsRepository;
     private final GanshinCharactersRepository ganshinCharactersRepository;
