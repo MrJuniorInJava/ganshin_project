@@ -25,11 +25,11 @@ public class ItemController {
     @PostMapping("/items/add/{idCharacter}")
     public String addItem(@PathVariable("idCharacter") int idCharacter,  @ModelAttribute("items") Item item) {
         itemsService.addItem(item, idCharacter);
-        return "redirect:/characters_admin/{idCharacter}";
+        return "redirect:/characters/{idCharacter}";
     }
     @PostMapping("/items/delete/{idCharacter}/{idItem}")
     public String deleteItem(@PathVariable("idCharacter") int idCharacter, @PathVariable("idItem") int idItem) {
         itemsService.delete(idItem);
-        return "redirect:/characters_admin/{idCharacter}";
+        return "redirect:/characters/{idCharacter}";
     }
 }

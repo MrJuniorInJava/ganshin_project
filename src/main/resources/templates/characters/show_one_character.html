@@ -118,49 +118,53 @@
     <form th:if="${role=='ROLE_ADMIN'}" th:action="@{/characters/edit/{id}(id=${character.get().getId()})}">
         <button>Изменить имя или картинку персонажа</button>
     </form>
-    <div th:if="${properties.isEmpty()}">
-        <p>Вы пока не указали характеристики для прокачки данного персонажа</p>
-        <hr/>
-    </div>
-    <div th:if="${!properties.isEmpty()}">
-
-        <hr/>
-        <h3>Характеристики для прокачки:</h3>
-        <br/>
-        <div class="center-table">
-            <table border="1" width="100">
-                <tr>
-                    <td>
-                        Статы для прокачки
-                    </td>
-                    <td>
-                        Оптимальное значение
-                    </td>
-                    <td th:if="${role=='ROLE_ADMIN'}">
-                        Действие
-                    </td>
-                </tr>
-                <tr th:each="property : ${properties}">
-                    <td th:text="${property.getName()}">
-                        property name
-                    </td>
-                    <td th:text="${property.getValue()}">
-                        property value
-                    </td>
-                    <td th:if="${role=='ROLE_ADMIN'}">
-                        <form th:method="DELETE"
-                              th:action="@{/property/delete/{idCharacter}/{idProperty}(idCharacter = ${character.get(). getId()},idProperty=${property.getId()})}">
-                            <input type="submit" value="Удалить характеристику"/>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+    <h3>Оптимальный уровень характеристик для данного персонажа:</h3>
+    <div>
+        <div th:if="${properties.isEmpty()}">
+            <p>Оптимальный уровень характеристик для данного персонажа пока не указан</p>
+            <br/>
         </div>
-        <form th:if="${role=='ROLE_ADMIN'}" th:method="POST" th:action="@{/characters/{id}(id=${character.get().getId()})}">
+        <div th:unless="${properties.isEmpty()}">
+            <br/>
+            <div class="center-table">
+                <table border="1" width="100">
+                    <tr>
+                        <td>
+                            Статы для прокачки
+                        </td>
+                        <td>
+                            Оптимальное значение
+                        </td>
+                        <td th:if="${role=='ROLE_ADMIN'}">
+                            Действие
+                        </td>
+                    </tr>
+                    <tr th:each="property : ${properties}">
+                        <td th:text="${property.getName()}">
+                            property name
+                        </td>
+                        <td th:text="${property.getValue()}">
+                            property value
+                        </td>
+                        <td th:if="${role=='ROLE_ADMIN'}">
+                            <form th:method="DELETE"
+                                  th:action="@{/property/delete/{idCharacter}/{idProperty}
+                              (idCharacter = ${character.get(). getId()},idProperty=${property.getId()})}">
+                                <input type="submit" value="Удалить характеристику"/>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <form th:if="${role=='ROLE_ADMIN'}" th:method="POST"
+              th:action="@{/characters/{id}(id=${character.get().getId()})}">
             Название характеристики <input type="text" name="name"/><br/><br/>
             Оптимальное значение <input type="text" name="value"/><br/><br/>
             <input type="submit" value="Добавить характеристику"/>
         </form>
+
         <br/>
         <br/>
         <hr/>
@@ -168,23 +172,26 @@
 
             <h3>Основные характеристики передметов для данного персонажа</h3>
             <br/>
+            <div th:if="${items.isEmpty()}">
+                <p>К сожалению таблица пока пуста</p>
+            </div>
             <div class="center-table">
                 <table border="1" width="100">
                     <tr>
                         <td>
-                            Статы для цветка
+                            Цветок
                         </td>
                         <td>
-                            Статы для пера
+                            Перо
                         </td>
                         <td>
-                            Статы для часов
+                            Часы
                         </td>
                         <td>
-                            Статы для кубка
+                            Кубок
                         </td>
                         <td>
-                            Статы для шапки
+                            Шапка
                         </td>
                     </tr>
                     <tr>
@@ -256,7 +263,9 @@
             <a>Дополнительных характеристик для предметов этого персонажа ещё не добавлено</a>
             <form th:if="${role=='ROLE_ADMIN'}" th:method="POST"
                   th:action="@{/stats/add/{idCharacter}(idCharacter=${character.get().getId()})}">
-                Введите необходимую характеристику  <input type="text" name="name"/><br/><br/>
+                Введите необходимую характеристику <input type="text" name="name"/>
+                <br/>
+                <br/>
                 <input type="submit" value="Добавить характеристику"/>
             </form>
         </div>
@@ -275,7 +284,8 @@
             </form>
         </div>
         <hr/>
-        <form th:if="${role=='ROLE_ADMIN'}" th:method="DELETE" th:action="@{/characters/delete/{id}(id=${character.get().getId()})}">
+        <form th:if="${role=='ROLE_ADMIN'}" th:method="DELETE"
+              th:action="@{/characters/delete/{id}(id=${character.get().getId()})}">
             <input type="submit" value="Удалить персонажа"/>
         </form>
         <br/>

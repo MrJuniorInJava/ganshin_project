@@ -34,8 +34,7 @@ public class GanshinCharacterController {
         return "characters/show_characters";
     }
     @GetMapping("/{id}")
-    public String showCharacter(@PathVariable("id") int id, Model model,
-                                @ModelAttribute("character") GanshinCharacter character) {
+    public String showCharacter(@PathVariable("id") int id, Model model) {
         String statsList= ganshinCharactersService.findOne(id).get().getStats().toString();
         model.addAttribute("character", ganshinCharactersService.findOne(id));
         model.addAttribute("properties", ganshinCharactersService.findOne(id).get().getProperties());
@@ -109,6 +108,17 @@ public class GanshinCharacterController {
                                    Model model) {
         model.addAttribute("characters", ganshinCharactersService.searchByName(name));
         return "characters/search";
+    }
+    @GetMapping("/table")
+    public String tablePage(Model model){
+        model.addAttribute("characters",ganshinCharactersService.findAll());
+        model.addAttribute("role",ganshinCharactersService.getRoleUser());
+        return "characters/table";
+    }
+    @PostMapping ("/table")
+    public String tablePage(){
+
+        return "characters/table";
     }
 
 }

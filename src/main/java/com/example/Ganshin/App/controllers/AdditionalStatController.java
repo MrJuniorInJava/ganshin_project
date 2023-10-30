@@ -21,12 +21,12 @@ public class AdditionalStatController {
     @PostMapping("/stats/add/{idCharacter}")
     public String addStats(@PathVariable("idCharacter") int idCharacter,  @ModelAttribute("stats") AdditionalStat stat) {
         service.addStat(stat, idCharacter);
-        return "redirect:/characters_admin/{idCharacter}";
+        return "redirect:/characters/{idCharacter}";
     }
     @PostMapping("/stats/delete/{idCharacter}/{idStat}")
     public String deleteItem(@PathVariable("idCharacter") int idCharacter,@PathVariable("idStat") int idStat) {
         service.deleteStat(idStat);
-        return "redirect:/characters_admin/{idCharacter}";
+        return "redirect:/characters/{idCharacter}";
     }
 
 }

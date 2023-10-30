@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Таблица полезных характеристик в предметах</title>
+    <style>
+        .center-table {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+
+    <h3>Основные характеристики передметов для данного персонажа</h3>
+    <br/>
+    <div class="center-table">
+        <table border="1" width="100">
+            <tr>
+                <td>
+                    Персонаж
+                </td>
+                <td>
+                    Цветок
+                </td>
+                <td>
+                    Перо
+                </td>
+                <td>
+                    Часы
+                </td>
+                <td>
+                    Кубок
+                </td>
+                <td>
+                    Шапка
+                </td>
+                <td>
+                    Доп статы
+                </td>
+            </tr>
+            <tr th:each="character : ${characters}">
+                <td>
+                    <a th:href="@{/characters/{id}(id=${character.getId()})}" th:text="${character.getName()}">Персонаж</a>
+                </td>
+                <td>
+                    <a th:if="${character.getItems().size()>=1}" th:text="${character.getItems().get(0).getValue()}">Цветок</a>
+                </td>
+                <td>
+                    <a th:if="${character.getItems().size()>=2}" th:text="${character.getItems().get(1).getValue()}">Перо</a>
+                </td>
+                <td>
+                    <a th:if="${character.getItems().size()>=3}" th:text="${character.getItems().get(2).getValue()}">Часы</a>
+                </td>
+                <td>
+                    <a th:if="${character.getItems().size()>=4}" th:text="${character.getItems().get(3).getValue()}">Кубок</a>
+                </td>
+                <td>
+                    <a th:if="${character.getItems().size()>=5}" th:text="${character.getItems().get(4).getValue()}">Шапка</a>
+                </td>
+                <td>
+                    <div th:unless="${character.getStats().isEmpty()}" th:each="stat:${character.getStats()}">
+                        <a th:text="${stat.getName()}">Доп характеристики предметов</a>
+                        <br/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
