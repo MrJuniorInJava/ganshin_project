@@ -259,6 +259,33 @@
                 </table>
             </div>
         </div>
+        <br/>
+        <div th:if="${weapons.isEmpty()}">
+            <a>Оружий для этого персонажа ещё не добавлено</a>
+            <form th:if="${role=='ROLE_ADMIN'}" th:method="POST"
+                  th:action="@{/weapons/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                Введите название оружия <input type="text" name="name"/>
+                <br/>
+                <br/>
+                <input type="submit" value="Добавить оружие"/>
+            </form>
+        </div>
+        <div th:unless="${weapons.isEmpty()}">
+            <a>Оружия для данного персонажа:</a>
+            <a th:text="${weapons}">оружия</a>
+            <form th:if="${role=='ROLE_ADMIN'}" th:method="POST"
+                  th:action="@{/weapons/add/{idCharacter}(idCharacter=${character.get().getId()})}">
+                Введите название оружия: <input type="text" name="name"/>
+                <br/>
+                <br/>
+                <input type="submit" value="Добавить оружие"/>
+            </form>
+            <form th:if="${role=='ROLE_ADMIN'}" th:method="DELETE"
+                  th:action="@{/weapons/delete/{idCharacter}/{idWeapon}(idCharacter = ${character.get(). getId()},
+                  idWeapon=${character.get().getWeapons().get(character.get().getWeapons().size()-1).getId()})}">
+                <input type="submit" value="Удалить значение"/>
+            </form>
+        </div>
         <div th:if="${stats.isEmpty()}">
             <a>Дополнительных характеристик для предметов этого персонажа ещё не добавлено</a>
             <form th:if="${role=='ROLE_ADMIN'}" th:method="POST"

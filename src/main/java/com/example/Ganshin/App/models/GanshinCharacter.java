@@ -29,6 +29,8 @@ public class GanshinCharacter {
     private List<Item> items;
     @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
     private List<AdditionalStat> stats;
+    @ManyToMany(mappedBy = "characters")
+    private List<Weapon> weapons;
 
     public GanshinCharacter() {
     }
@@ -89,6 +91,14 @@ public class GanshinCharacter {
         this.stats = stats;
     }
 
+    public List<Weapon> getWeapons() {
+        return weapons;
+    }
+
+    public void setWeapons(List<Weapon> weapons) {
+        this.weapons = weapons;
+    }
+
     //Вспомогательные методы
     public void addImageToCharacter(Image image) {
         image.setCharacter(this);
@@ -119,5 +129,11 @@ public class GanshinCharacter {
             this.stats = new ArrayList<>();
         }
         this.stats.add(stat);
+    }
+    public void addWeaponToCharacter(Weapon weapon) {
+        if (this.weapons == null) {
+            this.weapons = new ArrayList<>();
+        }
+        this.weapons.add(weapon);
     }
 }
