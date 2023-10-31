@@ -40,6 +40,9 @@
                 <td>
                     Доп статы
                 </td>
+                <td>
+                    Оружие
+                </td>
             </tr>
             <tr th:each="character : ${characters}">
                 <td>
@@ -62,7 +65,13 @@
                 </td>
                 <td>
                     <div th:unless="${character.getStats().isEmpty()}" th:each="stat:${character.getStats()}">
-                        <a th:text="${stat.getName()}">Доп характеристики предметов</a>
+                        <a th:text="${stat.getName()}">Доп.характеристика предметов</a>
+                        <br/>
+                    </div>
+                </td>
+                <td>
+                    <div th:unless="${character.getWeapons().isEmpty()}" th:each="weapon:${character.getWeapons()}">
+                        <a th:text="${weapon.getName()}">Оружие для персонажа</a>
                         <br/>
                     </div>
                 </td>

@@ -2,7 +2,6 @@ package com.example.Ganshin.App.services;
 
 import com.example.Ganshin.App.models.GanshinCharacter;
 import com.example.Ganshin.App.models.Image;
-import com.example.Ganshin.App.models.Property;
 import com.example.Ganshin.App.repositories.GanshinCharactersRepository;
 import com.example.Ganshin.App.repositories.ImagesRepository;
 import com.example.Ganshin.App.repositories.ItemsRepository;
@@ -84,13 +83,6 @@ public class GanshinCharactersService {
         ganshinCharactersRepository.deleteById(id);
     }
 
-    @Transactional
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void addProperty(Property property, int idCharacter) {
-        GanshinCharacter character = ganshinCharactersRepository.findById(idCharacter).orElse(null);
-        character.addPropertyToCharacter(property);
-        propertiesRepository.save(property);
-    }
 
     @Transactional
     public List<GanshinCharacter> searchByName(String name){

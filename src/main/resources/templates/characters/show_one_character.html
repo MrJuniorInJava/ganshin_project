@@ -159,7 +159,7 @@
         </div>
 
         <form th:if="${role=='ROLE_ADMIN'}" th:method="POST"
-              th:action="@{/characters/{id}(id=${character.get().getId()})}">
+              th:action="@{/property/add/{idCharacter}(idCharacter=${character.get().getId()})}">
             Название характеристики <input type="text" name="name"/><br/><br/>
             Оптимальное значение <input type="text" name="value"/><br/><br/>
             <input type="submit" value="Добавить характеристику"/>
@@ -197,7 +197,7 @@
                     <tr>
                         <td>
                             <a th:if="${items.size()>=1}" th:text="${items.get(0).getValue()}">item value</a>
-                            <form th:if="${items.size()>=1 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
+                            <form th:if="${items.size()==1 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
                                   th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(0).getId()})}">
                                 <input type="submit" value="Удалить значение"/>
                             </form>
@@ -209,7 +209,7 @@
                         </td>
                         <td>
                             <a th:if="${items.size()>=2}" th:text="${items.get(1).getValue()}">item value</a>
-                            <form th:if="${items.size()>=2 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
+                            <form th:if="${items.size()==2 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
                                   th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(1).getId()})}">
                                 <input type="submit" value="Удалить значение"/>
                             </form>
@@ -221,7 +221,7 @@
                         </td>
                         <td>
                             <a th:if="${items.size()>=3}" th:text="${items.get(2).getValue()}">item value</a>
-                            <form th:if="${items.size()>=3 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
+                            <form th:if="${items.size()==3 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
                                   th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(2).getId()})}">
                                 <input type="submit" value="Удалить значение"/>
                             </form>
@@ -233,7 +233,7 @@
                         </td>
                         <td>
                             <a th:if="${items.size()>=4}" th:text="${items.get(3).getValue()}">item value</a>
-                            <form th:if="${items.size()>=4 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
+                            <form th:if="${items.size()==4 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
                                   th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(3).getId()})}">
                                 <input type="submit" value="Удалить значение"/>
                             </form>
@@ -245,7 +245,7 @@
                         </td>
                         <td>
                             <a th:if="${items.size()>=5}" th:text="${items.get(4).getValue()}">item value</a>
-                            <form th:if="${items.size()>=5 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
+                            <form th:if="${items.size()==5 &&  role=='ROLE_ADMIN'}" th:method="DELETE"
                                   th:action="@{/items/delete/{idCharacter}/{idItem}(idCharacter = ${character.get(). getId()},idItem=${items.get(4).getId()})}">
                                 <input type="submit" value="Удалить значение"/>
                             </form>

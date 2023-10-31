@@ -1,7 +1,6 @@
 package com.example.Ganshin.App.controllers;
 
 import com.example.Ganshin.App.models.GanshinCharacter;
-import com.example.Ganshin.App.models.Property;
 import com.example.Ganshin.App.services.GanshinCharactersService;
 import com.example.Ganshin.App.utils.GanshinCharacterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +43,6 @@ public class GanshinCharacterController {
         model.addAttribute("role",ganshinCharactersService.getRoleUser());
         model.addAttribute("weapons",weaponsList.substring(1,weaponsList.length()-1));
         return "characters/show_one_character";
-    }
-
-    @PostMapping("/{id}")
-    public String addProperties(@PathVariable("id") int id, @ModelAttribute("properties") Property property) throws IOException {
-        ganshinCharactersService.addProperty(property, id);
-        return "redirect:/characters/{id}";
     }
 
 

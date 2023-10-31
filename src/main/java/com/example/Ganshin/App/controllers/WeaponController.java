@@ -3,6 +3,7 @@ package com.example.Ganshin.App.controllers;
 import com.example.Ganshin.App.models.Weapon;
 import com.example.Ganshin.App.services.WeaponsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/weapons")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class WeaponController {
     private final WeaponsService weaponsService;
 
